@@ -6,7 +6,7 @@ public class Main {
         String word =  scanner.nextLine(); 
         int key = scanner.nextInt();
         chipnet tom = new chipnet();
-        System.out.println(tom.decrypt(word, key));
-        System.out.println(tom.encrypt(word,key));
+        System.out.println(tom.encrypt(word, key));
+        System.out.println(tom.decrypt(word,key));
         }
     }

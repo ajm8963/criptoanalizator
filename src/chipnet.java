@@ -1,32 +1,24 @@
 public class chipnet {
-
-    public chipnet(){
-    }
-    public String encrypt(String text, int key){
+    public String encrypt(String text, int key) {
         return analizator(text, key);
     }
+
     public String decrypt(String encryptedText, int key) {
         return analizator(encryptedText, -key);
     }
-    public String analizator(String text, int shift){
+
+    public String analizator(String text, int shift) {
         StringBuilder result = new StringBuilder();
-        int sparekey ;
-        int newkey ;
-        char simvol;
-        for (int i = 0; i < text.length(); i++) {
-            if (shift > 127) {
-                newkey = shift - 127;
-                if(newkey > 26) {
-                    sparekey = newkey % 26;
-                    simvol = (char) (text.charAt(i) + sparekey);
-                    result.append(simvol);
-                }else{
-                    simvol = (char) (text.charAt(i) + newkey);
-                    result.append(simvol);
+            int newshift = shift % 26;
+            for (int i = 0; i < text.length(); i++) {
+                int rangezone = (text.charAt(i) + newshift);{
+                    if (rangezone > 127) {
+                        rangezone = (rangezone - 126) + 96;
                     }
+                }
+                result.append((char) rangezone);
             }
+            return result.toString();
         }
-        return result.toString();
     }
 
-}
